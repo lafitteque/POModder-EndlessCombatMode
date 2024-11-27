@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddobp7ejgnpfj"]
+
+[ext_resource type="Script" path="res://mods-unpacked/POModder-EndlessCombatMode/content/loadout_gamemode/Loadout_EndlessCombatMode.gd" id="1_7eedt"]
+
+[node name="LoadoutEndlessCombatMode" type="Node2D" groups=["gamemode-loadout"]]
+script = ExtResource("1_7eedt")

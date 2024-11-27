@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dk3g3g6md5kan"
+
+[deps]
+
+files=["res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.en.translation", "res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.fr.translation", "res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.es.translation"]
+
+source_file="res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.csv"
+dest_files=["res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.en.translation", "res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.fr.translation", "res://mods-unpacked/POModder-EndlessCombatMode/translations/translations.es.translation"]
+
+[params]
+
+compress=true
+delimiter=0

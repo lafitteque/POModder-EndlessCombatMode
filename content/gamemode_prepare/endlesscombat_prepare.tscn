@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cba8eise0x2ea"]
+
+[ext_resource type="Script" path="res://mods-unpacked/POModder-EndlessCombatMode/content/gamemode_prepare/endlesscombat_prepare.gd" id="1_cghwg"]
+
+[node name="EndlesscombatPrepare" type="Node2D" groups=["gamemodes-prepare"]]
+script = ExtResource("1_cghwg")

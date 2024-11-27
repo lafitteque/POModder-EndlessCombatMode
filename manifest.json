@@ -1,0 +1,17 @@
+{
+	"name": "EndlessCombatMode",
+	"namespace": "POModder",
+	"version_number": "1.0.0",
+	"description": "A new gamemode with endless combat.",
+	"website_url": "https://",
+	"dependencies": [],
+	"extra": {
+		"godot": {
+			"incompatibilities": [],
+			"authors": ["PO"],
+			"compatible_mod_loader_version": ["3.0.0"],
+			"compatible_game_version": ["4.1"],
+			"config_defaults": {}
+		}
+	}
+}
