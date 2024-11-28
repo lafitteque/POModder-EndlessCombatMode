@@ -34,8 +34,11 @@ func modInit():
 	Data.registerGameMode("endlesscombat")
 	GameWorld.unlockElement("endlesscombat")
 
-	var endlessCombatPrepare = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/gamemode_prepare/endlesscombat_prepare.tscn").instantiate()
-	add_child(endlessCombatPrepare)
+	var endlesscombat_prepare = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/gamemode_prepare/endlesscombat_prepare.tscn").instantiate()
+	add_child(endlesscombat_prepare)
+	
+	
+	
 	
 # Called when the node enters the scene tree for the first time.
 func manage_overrides():
@@ -58,7 +61,12 @@ func manage_overrides():
 	
 	
 func _on_level_ready():
-	pass
+	if Level.loadout.modeId == "endlesscombat":
+		var endlesscombat_manager = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/endlesscombat_manager/endlesscombat_manager.tscn").instantiate()
+		add_child(endlesscombat_manager)
+		Data.apply("monsters.timeBetweenWaves", 5)
+	print(Data.gadgets.keys())
+	
 	# ajouter le worldmodifier?
 
 

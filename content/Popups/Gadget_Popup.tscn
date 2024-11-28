@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://caesjs2875n2s"]
+
+[ext_resource type="Theme" path="res://gui/theme.tres" id="1_7gf2l"]
+[ext_resource type="Script" path="res://mods-unpacked/POModder-EndlessCombatMode/content/Popups/Gadget_Popup.gd" id="2_hpwl5"]
+[ext_resource type="PackedScene" path="res://systems/deprecatedtween/DeprecatedTween.tscn" id="3_kpj57"]
+[ext_resource type="StyleBox" path="res://gui/panels/panel_outside.tres" id="4_ihk1j"]
+[ext_resource type="FontVariation" path="res://gui/fonts/FontHeading.tres" id="5_13em3"]
+[ext_resource type="LabelSettings" path="res://gui/fontsettings/HeadingFontSettings.tres" id="6_nohp0"]
+[ext_resource type="Texture2D" uid="uid://b6jc1mfc22tag" path="res://content/icons/icon_water.png" id="7_rxx12"]
+
+[node name="EndlessCombatPopup" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7gf2l")
+script = ExtResource("2_hpwl5")
+
+[node name="Tween" parent="." instance=ExtResource("3_kpj57")]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("4_ihk1j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 4
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.831373, 0.639216, 1)
+theme_override_fonts/font = ExtResource("5_13em3")
+text = "level.gadgetchoice.title"
+label_settings = ExtResource("6_nohp0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RerollButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "level.supplementchoice.reroll"
+icon = ExtResource("7_rxx12")
+
+[node name="Gadgets" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 3
+
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/HBoxContainer/RerollButton" to="." method="_on_reroll_button_focus_entered"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/RerollButton" to="." method="_on_reroll_button_pressed"]
