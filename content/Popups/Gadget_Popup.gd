@@ -1,15 +1,11 @@
 extends "res://stages/level/GadgetChoicePopup.gd"
 
-var exclude_gadgets = ["furnace", "extractor",
+var exclude = ["furnace", "extractor",
  "blastMining", "probe", "teleporter", "lift",
  "condenser", "prospectionmeter", "suitblaster", 
 "drill", "drillbot", "converter", "stationextension",
-"mushroomfarm", "resourcepacker", "blastmining"]
-var exclude_powercore = ["furnace", "extractor",
- "blastMining", "probe", "teleporter", "lift",
- "condenser", "prospectionmeter", "suitblaster", 
-"drill", "drillbot", "converter", "stationextension",
-"mushroomfarm", "resourcepacker", "blastmining"]
+"mushroomfarm", "resourcepacker", "blastmining", "keeperonewayteleporter",
+ "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
 var resource_offers = [
 	{"id": "shredgadgettocobalt", 
 	"dropType": CONST.SAND, 
@@ -30,8 +26,7 @@ func _ready():
 	for x in gadgets:
 		if not x.has("dropType"):
 			# don't consider drop type offers here
-			exclude_gadgets.append(x.id)
-			exclude_powercore.append(x.id)
+			exclude.append(x.id)
 			
 func loadResources():
 	droptype = "resources"
@@ -45,14 +40,16 @@ func should_allow_reroll() -> bool:
 func generateOffers():
 	var offer:Array
 	var goalCount : int
-	
+	var availableGadgets = []
 	if droptype == CONST.POWERCORE:
-		offer = GameWorld.generateSupplements(exclude_powercore.duplicate())
+		offer = GameWorld.generateSupplements(exclude.duplicate())
+		goalCount = 2
 	elif droptype == CONST.GADGET:
-		offer = GameWorld.generateGadgets(exclude_gadgets.duplicate())
+		offer = GameWorld.generateGadgets(exclude.duplicate())
+		goalCount = 2
 	elif droptype == "resources":
 		offer = resource_offers.duplicate()
-	goalCount = min(offer.size(),4)
+		goalCount = min(offer.size(),3)
 	
 	
 	var freeReroll = rerollCount == 0 
@@ -67,6 +64,8 @@ func generateOffers():
 		c.queue_free()
 	
 	offer.resize(min(goalCount, offer.size()))
+	if droptype != "resources":
+		offer.append(resource_offers[randi_range(0,2)])
 	
 	var count = offer.size()
 	self.gadgets = offer

@@ -1,6 +1,13 @@
 extends Node2D
 
+var exclude = ["furnace", "extractor",
+ "blastMining", "probe", "teleporter", "lift",
+ "condenser", "prospectionmeter", "suitblaster", 
+"drill", "drillbot", "converter", "stationextension",
+"mushroomfarm", "resourcepacker", "blastmining", "keeperonewayteleporter",
+ "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
 @onready var level_stage = StageManager.currentStage
+var cycle = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,17 +25,29 @@ func stage_changed():
 		queue_free()
 		
 func wave_ended():
-	var cycle = Data.ofOr("monsters.cycle", 0)
+	Data.apply("monsters.waveCooldown", 3)
 	
+	cycle += 1
+	if cycle == 0 :
+		return
+	
+	
+	var offer_valid = false
 	#if cycle % 7 == 4 :
 		#generate_bad_choice()
 	if cycle % 3 == 1 :
-		generate_choice(CONST.GADGET)
+		if GameWorld.generateGadgets(exclude.duplicate()).size() > 0:
+			generate_choice(CONST.GADGET)
+			offer_valid = true
 	elif cycle % 3 == 2: 
-		generate_choice(CONST.POWERCORE)
-	else :
+		if GameWorld.generateSupplements(exclude.duplicate()).size() > 0:
+			generate_choice(CONST.POWERCORE)
+			offer_valid = true
+			
+	if ! offer_valid and cycle <= 20:
 		generate_choice("resources")
-
+		
+	
 
 func generate_bad_choice():
 	pass
@@ -36,6 +55,7 @@ func generate_bad_choice():
 func generate_choice(type):
 	var i = preload("res://stages/level/GadgetChoiceInputProcessor.gd").new()
 	i.popup = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/Popups/Gadget_Popup.tscn").instantiate()
+	
 	level_stage.showPopup(i.popup)
 	
 	match type:

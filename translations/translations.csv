@@ -5,5 +5,5 @@ loadout.endlesscombat.title,Endless Combat,Combat sans fin,Combate infinito
 upgrades.endlesscombat.title,Endless Combat,Combat sans fin,Combate infinito
 upgrades.endlesscombat.desc,Fight until you are defeated.,Combattez jusqu’à être vaincu.,Lucha hasta que te derroten.
 ,,,
-upgrades.shedgadgettowater.title,Shred to Water,,
-upgrades.shredgadgettowater.desc,Shred the gadget and gain%d water.,,
+upgrades.shredgadgettowater.title,Shred to Water,,
+upgrades.shredgadgettowater.desc,Shred the gadget and gain {amount} water.,,
