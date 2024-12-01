@@ -1,0 +1,4 @@
+endlesscombat:
+  type: gamemode
+  propertyChanges: 
+    - prestige.provokedwavestrength = 1.0/h

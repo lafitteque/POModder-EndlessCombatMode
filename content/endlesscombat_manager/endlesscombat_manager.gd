@@ -6,13 +6,24 @@ var exclude = ["furnace", "extractor",
 "drill", "drillbot", "converter", "stationextension",
 "mushroomfarm", "resourcepacker", "blastmining", "keeperonewayteleporter",
  "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
-@onready var level_stage = StageManager.currentStage
 var cycle = -1
+var rerollCount = 1
+
+var mode
+
+@onready var level_stage = StageManager.currentStage
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Data.listen(self, "monsters.wavepresent")
 	StageManager.stage_started.connect(stage_changed)
+	
+func setRerollCount(i : int):
+	rerollCount = i
+	
+func setMode(modeName):
+	mode = modeName
 	
 func propertyChanged(property : String, old_value, new_value):
 	match property:
@@ -26,11 +37,10 @@ func stage_changed():
 		
 func wave_ended():
 	Data.apply("monsters.waveCooldown", 3)
-	
 	cycle += 1
+	
 	if cycle == 0 :
 		return
-	
 	
 	var offer_valid = false
 	#if cycle % 7 == 4 :
@@ -55,6 +65,7 @@ func generate_bad_choice():
 func generate_choice(type):
 	var i = preload("res://stages/level/GadgetChoiceInputProcessor.gd").new()
 	i.popup = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/Popups/Gadget_Popup.tscn").instantiate()
+	i.popup.maxRerollCount = rerollCount
 	
 	level_stage.showPopup(i.popup)
 	
@@ -65,6 +76,7 @@ func generate_choice(type):
 			i.popup.loadSupplements()
 		"resources":
 			i.popup.loadResources()
+			i.popup.maxRerollCount = 0
 		_:
 			Logger.error("unknown gadget type", "LevelStage.startGadgetChoiceInput", {"type": type})
 			i.popup.queue_free()
@@ -77,5 +89,7 @@ func generate_choice(type):
 	i.connect("gadgetSelected", GameWorld.addUpgrade)
 	i.integrate(self)
 	level_stage.pause()
+
+
 
 

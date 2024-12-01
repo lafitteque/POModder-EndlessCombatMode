@@ -19,7 +19,7 @@ layout_mode = 2
 theme = ExtResource("1_gfwe6")
 theme_override_fonts/font = ExtResource("2_dy2l2")
 theme_override_font_sizes/font_size = 64
-text = "loadout.coresaver.title"
+text = "loadout.endlesscombat.title"
 label_settings = ExtResource("3_skco4")
 horizontal_alignment = 1
 
@@ -35,12 +35,12 @@ mouse_filter = 2
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="DifficultyList" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="ModeListe" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/DifficultyList"]
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/ModeListe"]
 texture_filter = 4
 layout_mode = 2
 size_flags_horizontal = 3
@@ -48,42 +48,21 @@ size_flags_vertical = 0
 theme = ExtResource("1_gfwe6")
 theme_override_fonts/font = ExtResource("4_rgerr")
 theme_override_font_sizes/font_size = 36
-text = "loadout.difficulty.title"
+text = "loadout.endlesscombat.mode"
 label_settings = ExtResource("5_0hxmc")
 horizontal_alignment = 1
 
-[node name="DifficultyContainers" type="GridContainer" parent="VBoxContainer/HBoxContainer/DifficultyList"]
+[node name="ModeContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/ModeListe"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 
-[node name="MapSizeList" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/MapSizeList"]
-texture_filter = 4
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme = ExtResource("1_gfwe6")
-theme_override_fonts/font = ExtResource("4_rgerr")
-theme_override_font_sizes/font_size = 36
-text = "loadout.mapsize.title"
-label_settings = ExtResource("5_0hxmc")
-horizontal_alignment = 1
-
-[node name="MapsizeContainers" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MapSizeList"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ModifiersBox" type="VBoxContainer" parent="VBoxContainer"]
+[node name="RerollNumber" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_2g47q")
 
-[node name="Label4" type="Label" parent="VBoxContainer/ModifiersBox"]
+[node name="Label4" type="Label" parent="VBoxContainer/RerollNumber"]
 texture_filter = 4
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,5 +70,11 @@ size_flags_vertical = 0
 theme = ExtResource("1_gfwe6")
 theme_override_fonts/font = ExtResource("4_rgerr")
 theme_override_font_sizes/font_size = 36
+text = "loadout.endlesscombat.rerolls"
 label_settings = ExtResource("5_0hxmc")
 horizontal_alignment = 1
+
+[node name="RerollsContainer" type="GridContainer" parent="VBoxContainer/RerollNumber"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2

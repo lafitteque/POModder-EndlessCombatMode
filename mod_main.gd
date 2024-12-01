@@ -7,6 +7,8 @@ var dir = ""
 var ext_dir = ""
 
 var trans_dir = "res://mods-unpacked/POModder-EndlessCombatMode/translations/"
+var rerollCount := 1
+var mode := ""
 
 func _init():
 	ModLoaderLog.info("Init", MYMODNAME_LOG)
@@ -21,8 +23,9 @@ func _init():
 func _ready():
 	ModLoaderLog.info("Done", MYMODNAME_LOG)
 	add_to_group("mod_init")
-
-		
+	#var pathToModYamlUpgrades = "res://mods-unpacked/POModder-AllYouCanMine/yaml/upgrades.yaml"
+	#Data.parseUpgradesYaml(pathToModYamlUpgrades)	
+	
 func modInit():
 	manage_overrides()
 	
@@ -50,7 +53,7 @@ func manage_overrides():
 
 	### Custom Game Mode (simply a copy of relichunt) :
 	
-	var endlesscombat = preload("res://content/gamemode/relichunt/Relichunt.tscn")
+	var endlesscombat = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/EndlessCombat/endlesscombat.tscn")
 	endlesscombat.take_over_path("res://content/gamemode/endlesscombat/Endlesscombat.tscn")
 	
 	
@@ -63,6 +66,8 @@ func manage_overrides():
 func _on_level_ready():
 	if Level.loadout.modeId == "endlesscombat":
 		var endlesscombat_manager = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/endlesscombat_manager/endlesscombat_manager.tscn").instantiate()
+		endlesscombat_manager.setRerollCount(rerollCount)
+		endlesscombat_manager.setMode(mode)
 		add_child(endlesscombat_manager)
 		Data.apply("monsters.timeBetweenWaves", 5)
 	print(Data.gadgets.keys())

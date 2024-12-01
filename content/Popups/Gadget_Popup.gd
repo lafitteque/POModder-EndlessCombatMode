@@ -19,7 +19,8 @@ var resource_offers = [
 	"dropType": CONST.WATER, 
 	"amount": floor(1* clamp(Data.ofOr("monsters.cycle", 1)**(0.4) ,1,4) )
 	}]
-	
+var maxRerollCount = 1
+
 func _ready():
 	super()
 	Data.apply("gadgetselection.paidreroll", false) 
@@ -34,7 +35,7 @@ func loadResources():
 	generateOffers()
 		
 func should_allow_reroll() -> bool:
-	return true #rerollCount == 0
+	return rerollCount < maxRerollCount
 
 
 func generateOffers():
@@ -52,7 +53,7 @@ func generateOffers():
 		goalCount = min(offer.size(),3)
 	
 	
-	var freeReroll = rerollCount == 0 
+	var freeReroll = rerollCount <= maxRerollCount 
 	var rerollPossible = freeReroll and offer.size() > goalCount
 
 	%RerollButton.visible = rerollPossible

@@ -7,3 +7,9 @@ upgrades.endlesscombat.desc,Fight until you are defeated.,Combattez jusqu’à �
 ,,,
 upgrades.shredgadgettowater.title,Shred to Water,,
 upgrades.shredgadgettowater.desc,Shred the gadget and gain {amount} water.,,
+,,,
+loadout.endlesscombat.mode,Monsters Settings,Paramètres de Monstres,Parametros de Monstruos
+loadout.endlesscombat.prestige-miner,No weight modifier (as in Prestige – Miner),Pas de poids supplémentaire (Comme dans Prestige – Minier),Sin peso adicional (como en Prestigio - Minero)
+loadout.endlesscombat.prestige-provocation,Weight modifier from Prestige – Provocation,Modification de poids comme dans Prestige – Provocation,Peso adicional como en Prestigio – Provocación
+loadout.endlesscombat.rerollname,Rerolls :,Rerolls :,Rerolls :
+loadout.endlesscombat.reroll,Number of Rerolls,Nombre de Rerolls,Numero de Rerolls
