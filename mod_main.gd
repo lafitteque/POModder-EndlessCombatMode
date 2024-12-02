@@ -53,7 +53,7 @@ func manage_overrides():
 
 	### Custom Game Mode (simply a copy of relichunt) :
 	
-	var endlesscombat = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/EndlessCombat/endlesscombat.tscn")
+	var endlesscombat = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/EndlessCombat/EndlessCombat.tscn")
 	endlesscombat.take_over_path("res://content/gamemode/endlesscombat/Endlesscombat.tscn")
 	
 	
