@@ -23,7 +23,7 @@ func _init():
 func _ready():
 	ModLoaderLog.info("Done", MYMODNAME_LOG)
 	add_to_group("mod_init")
-	#var pathToModYamlUpgrades = "res://mods-unpacked/POModder-AllYouCanMine/yaml/upgrades.yaml"
+	#var pathToModYamlUpgrades = "res://mods-unpacked/POModder-Dependency/yaml/upgrades.yaml"
 	#Data.parseUpgradesYaml(pathToModYamlUpgrades)	
 	
 func modInit():
@@ -33,13 +33,13 @@ func modInit():
 
 	var endlesscombat_loadout = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/loadout_gamemode/Loadout_EndlessCombatMode.tscn").instantiate()
 	add_child(endlesscombat_loadout)
-	
+	#
 	Data.registerGameMode("endlesscombat")
 	GameWorld.unlockElement("endlesscombat")
-
+#
 	var endlesscombat_prepare = preload("res://mods-unpacked/POModder-EndlessCombatMode/content/gamemode_prepare/endlesscombat_prepare.tscn").instantiate()
 	add_child(endlesscombat_prepare)
-	
+	#
 	
 	
 	

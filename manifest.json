@@ -4,7 +4,7 @@
 	"version_number": "0.1.0",
 	"description": "A new gamemode with endless combat.",
 	"website_url": "https://",
-	"dependencies": ["POModder-AllYouCanMine"],
+	"dependencies": ["POModder-Dependency"],
 	"extra": {
 		"godot": {
 			"incompatibilities": [],

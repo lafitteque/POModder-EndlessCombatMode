@@ -62,18 +62,16 @@ func get_block_ui_name() -> String:
 func has_tiledata() -> bool:
 	return true
 
-
-func get_tiledata_name() -> String:
-	return "endlesscombat"
-
 	
-func get_loadout_tiledata(stack_name : String) -> MapData:
-	return preload("res://stages/loadout/TileDataModeRelicHunt.tscn").instantiate()
+func get_loadout_tiledata(tileData, requiremnts) :
+	var stack_list = []
+	if "endlesscombat" in requiremnts:
+		stack_list.append([load("res://stages/loadout/TileDataModeRelicHunt.tscn").instantiate(),Vector2(-9, 2)])
+	return stack_list
 
+func fillGameModes(loadout_scene):
+	return 
 	
-func get_loadout_tiledata_offset(stack_name : String) -> Vector2:
-	return Vector2(-9, 2)
-
 	
 func set_gamemode_loadout(loadout_scene) -> void:
 	var endlesscombat_loadout = GameWorld.lastLoadoutsByMode.get("prestige").duplicate()
@@ -85,6 +83,7 @@ func set_gamemode_loadout(loadout_scene) -> void:
 
 
 func modeSelected(mode):
+	Level.loadout.modeConfig[CONST.MODE_CONFIG_PRESTIGE_VARIANT] = mode
 	selectedMode = mode
 	for c in modeContainer.get_children():
 		if not c is Label:

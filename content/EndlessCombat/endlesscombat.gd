@@ -19,8 +19,6 @@ func getRunWeight() -> float:
 	
 	weight += round(pow(2, ((cycle - (1 + Level.loadout.difficulty)) * 0.08)) * cycle * 10 + cycle * 10)
 	weight += GameWorld.additionalRunWeight
-	weight += Data.of("prestige.provokedwavestrengthadditive")
-	weight *= Data.of("prestige.provokedwavestrength")
 	weight *= Data.of("monstermodifiers.totalrunweightmodifier")
 	weight *= 1.0 + Level.loadout.difficulty * 0.1
 	
