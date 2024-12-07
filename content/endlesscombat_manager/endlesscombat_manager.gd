@@ -54,7 +54,7 @@ func wave_ended():
 			generate_choice(CONST.POWERCORE)
 			offer_valid = true
 			
-	if ! offer_valid and cycle <= 20:
+	if ! offer_valid:
 		generate_choice("resources")
 		
 	

@@ -5,7 +5,7 @@ func prepareGameMode(modeId, levelStartData):
 	if modeId != "endlesscombat":
 		return
 		
-	levelStartData.loadout.modeConfig[CONST.MODE_CONFIG_WORLDMODIFIERS] =  ["worldmodifiernorelic"]
+	levelStartData.loadout.modeConfig[CONST.MODE_CONFIG_WORLDMODIFIERS] =  ["worldmodifiernorelic", "worldmodifiersmalldrops"]
 	levelStartData.loadout.modeConfig["upgradelimits"] = ["hostile"]
 	GameWorld.setUpgradeLimitAvailable("hostile")
 	
