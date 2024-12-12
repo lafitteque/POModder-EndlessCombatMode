@@ -6,6 +6,7 @@ var exclude = ["furnace", "extractor",
 "drill", "drillbot", "converter", "stationextension",
 "mushroomfarm", "resourcepacker", "blastmining", "keeperonewayteleporter",
  "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
+
 var resource_offers = [
 	{"id": "shredgadgettocobalt", 
 	"dropType": CONST.SAND, 

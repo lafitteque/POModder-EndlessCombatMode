@@ -8,6 +8,8 @@ var exclude = ["furnace", "extractor",
  "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
 var cycle = -1
 var rerollCount = 1
+var speed_cooldown = 36
+var game_speed = false
 
 var mode
 
@@ -32,11 +34,15 @@ func propertyChanged(property : String, old_value, new_value):
 				wave_ended()
 
 func stage_changed():
+	Engine.time_scale = 1.0
 	if StageManager.currentStage.name != "LevelStage":
 		queue_free()
 		
 func wave_ended():
-	Data.apply("monsters.waveCooldown", 3)
+	Data.apply("monsters.waveCooldown", 40)
+	Engine.time_scale = 6.0
+	speed_cooldown = 36
+	game_speed = true
 	cycle += 1
 	
 	if cycle == 0 :
@@ -85,11 +91,26 @@ func generate_choice(type):
 	i.connect("onStop", level_stage.unpause)
 	i.connect("onStop", set.bind("inputDeviceLimit", -1))
 	i.connect("deviceLocked", set)
-	i.connect("dropsSelected", level_stage.addDropsToDome)
+	i.connect("dropsSelected", _add_drops)
 	i.connect("gadgetSelected", GameWorld.addUpgrade)
 	i.integrate(self)
 	level_stage.pause()
 
-
-
+func _add_drops(type:String, amount:int):
+	for _i in range(0, amount):
+		Data.changeByInt("inventory."+type , 1)
+		await get_tree().create_timer(0.2).timeout
+		
+		
+func _process(delta):
+	if GameWorld.paused:
+		return
+		
+	if !game_speed :
+		return
+		
+	speed_cooldown -= delta
+	if speed_cooldown < 0 :
+		Engine.time_scale = 1.0
+		game_speed = false
 
