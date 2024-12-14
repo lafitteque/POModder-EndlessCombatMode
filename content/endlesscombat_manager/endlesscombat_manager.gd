@@ -8,7 +8,7 @@ var exclude = ["furnace", "extractor",
  "shredgadgettoiron", "shredgadgettocobalt", "shredgadgettowater"]
 var cycle = -1
 var rerollCount = 1
-var speed_cooldown = 36
+var speed_cooldown = 26
 var game_speed = false
 
 var mode
@@ -39,9 +39,11 @@ func stage_changed():
 		queue_free()
 		
 func wave_ended():
-	Data.apply("monsters.waveCooldown", 40)
-	Engine.time_scale = 6.0
-	speed_cooldown = 36
+	Data.apply("monsters.waveCooldown", 30)
+	Engine.time_scale = 4.0
+	var maxShieldStrength = Data.of("shield.maxStrength")
+	Data.apply("shield.strength", maxShieldStrength)
+	speed_cooldown = 28
 	game_speed = true
 	cycle += 1
 	

@@ -5,7 +5,7 @@ func prepareGameMode(modeId, levelStartData):
 	if modeId != "endlesscombat":
 		return
 		
-	levelStartData.loadout.modeConfig[CONST.MODE_CONFIG_WORLDMODIFIERS] =  ["worldmodifiernorelic", "worldmodifiersmalldrops"]
+	levelStartData.loadout.modeConfig[CONST.MODE_CONFIG_WORLDMODIFIERS] =  ["worldmodifiernorelic"]
 	levelStartData.loadout.modeConfig["upgradelimits"] = ["hostile"]
 	GameWorld.setUpgradeLimitAvailable("hostile")
 	
@@ -16,7 +16,11 @@ func prepareGameMode(modeId, levelStartData):
 		levelStartData.loadout.worldId = GameWorld.getNextRandomWorldId()
 	Data.apply("monsters.allowedtypes", Data.gameProperties.get("monstersbyworld.world6"))
 	
+	GameWorld.removeAvailableUpgradeLimit("mining")
+	
 	for modifierId in levelStartData.loadout.modeConfig.get(CONST.MODE_CONFIG_WORLDMODIFIERS, []):
+		if ! Data.worldModifiers.has(modifierId) :
+			continue
 		var modifier = Data.worldModifiers[modifierId]
 		for propertyChange in modifier.get("propertychanges", {}):
 			if levelStartData.mapArchetype and propertyChange.keyClass == "archetype":
@@ -37,4 +41,3 @@ func prepareGameMode(modeId, levelStartData):
 		var globalAreaOverrides = modifier.get("globalareaoverrides", {})
 		for areaOverride in globalAreaOverrides:
 			levelStartData.loadout.globalAreaOverrides[areaOverride] = globalAreaOverrides[areaOverride]
-	GameWorld.removeAvailableUpgradeLimit("mining")
